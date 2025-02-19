@@ -20,7 +20,8 @@ function displayItems(items) {
 
   items.forEach(item => {
     const itemDiv = document.createElement('div');
-    itemDiv.classList.add('item-card');
+    itemDiv.classList.add('item-card', item.rarity.toLowerCase());  // Add class based on rarity
+
     itemDiv.innerHTML = `
       <img src="${item.image_url}" alt="${item.name}" width="100" height="100" />
       <h3>${item.name}</h3>
