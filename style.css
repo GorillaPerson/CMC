@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+div {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #333;
+  border: 1px solid #444;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+p {
+  margin: 5px 0;
+}
