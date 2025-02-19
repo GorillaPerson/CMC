@@ -1,33 +1,88 @@
+/* Dark Mode Styling */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #1a1a1a;
+  font-family: 'Arial', sans-serif;
+  background-color: #121212; /* Dark mode background */
   color: white;
   margin: 0;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-}
-
-#items-list {
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
 }
 
-div {
+/* Big Rounded Search Bar at the Top */
+.search-bar {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px 0;
   padding: 15px;
-  border-radius: 10px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: 2px solid #444;
   background-color: #333;
-  border: 1px solid #444;
+  color: white;
+  outline: none;
 }
 
-h3 {
-  margin: 0;
-  font-size: 1.5rem;
+/* Search Bar Focus */
+.search-bar:focus {
+  border-color: #f39c12;
+  background-color: #444;
 }
 
-p {
-  margin: 5px 0;
+/* Scrollable Items */
+#items-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  width: 80%;
+  max-width: 1200px;
+  height: 70vh; /* Set the height to enable scrolling */
+  overflow-y: auto; /* Enable vertical scroll */
+  margin-top: 20px;
+  background-color: #1f1f1f;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Individual Item Cards */
+.item-card {
+  background-color: #2e2e2e;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.item-card:hover {
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+/* Item Title */
+.item-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+/* Item Rarity with Color */
+.item-rarity {
+  font-weight: bold;
+}
+
+/* Item Price with color */
+.item-price {
+  color: #f39c12;
+  font-size: 1rem;
+}
+
+/* Center Content */
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
