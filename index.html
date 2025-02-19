@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Items List</title>
-  </head>
-  <body>
-    <h1>Items List</h1>
-    <div id="items-list"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Items List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- Search Bar at the Top -->
+  <div class="center-content">
+    <input 
+      type="text" 
+      id="search-bar" 
+      class="search-bar" 
+      placeholder="Search for an item..." 
+      oninput="filterItems()"
+    />
+  </div>
+
+  <!-- Items List Section -->
+  <div id="items-list"></div>
+
+  <script src="script.js"></script>
+</body>
 </html>
