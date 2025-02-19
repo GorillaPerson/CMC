@@ -1,4 +1,4 @@
-const apiUrl = 'https://228363d1-ce75-4d23-af8b-73b1ddefc072-00-izqgoetu11vd.picard.replit.dev/';  // Use your Replit backend URL
+const apiUrl = 'https://228363d1-ce75-4d23-af8b-73b1ddefc072-00-izqgoetu11vd.picard.replit.dev/items';  // Use your Replit backend URL
 
 fetch(apiUrl)
   .then(response => response.json())  // Parse the JSON response
