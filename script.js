@@ -13,12 +13,20 @@ fetch(apiUrl)
     console.error('Error fetching items:', error);
   });
 
+// Function to format number with commas
+function formatNumberWithCommas(number) {
+  return number.toLocaleString(); // Formats number with commas
+}
+
 // Function to display the items
 function displayItems(items) {
   const itemsList = document.getElementById('items-list');
   itemsList.innerHTML = ''; // Clear the list before displaying the new items
 
   items.forEach(item => {
+    // Format the estimated value with commas
+    const formattedPrice = formatNumberWithCommas(item.estimated_value);
+
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('item-card', item.rarity.toLowerCase());  // Add class based on rarity
 
@@ -26,7 +34,7 @@ function displayItems(items) {
       <img src="${item.image_url}" alt="${item.name}" width="100" height="100" />
       <h3>${item.name}</h3>
       <p class="item-rarity">${item.rarity}</p>
-      <p class="item-price">$${item.estimated_value}</p>
+      <p class="item-price">$${formattedPrice}</p> <!-- Display formatted price with commas -->
     `;
     itemsList.appendChild(itemDiv);
   });
