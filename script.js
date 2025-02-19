@@ -9,7 +9,7 @@ fetch(apiUrl)
       itemDiv.innerHTML = `
         <h3>${item.name}</h3>
         <p>Rarity: ${item.rarity}</p>
-        <p>Estimated Price: $${item.estimated_value}</p>
+        <p>Estimated Price: $${item.price}</p>
       `;
       itemsList.appendChild(itemDiv);
     });
