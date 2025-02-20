@@ -2,16 +2,6 @@ const apiUrl = 'https://workercloudflare.cdent-989.workers.dev/items'; // Replac
 
 let itemsData = []; // To store the fetched data
 
-// Define rarity colors for both text and outline
-const rarityColors = {
-  'Common': '#808080', // Gray
-  'Uncommon': '#32CD32', // Light Green
-  'Rare': '#0000FF', // Blue
-  'Epic': '#800080', // Purple
-  'Legendary': '#FFD700', // Yellow
-  'Special': '#FF0000', // Red
-};
-
 // Fetch items from the backend and display them
 fetch(apiUrl)
   .then(response => response.json())
@@ -37,7 +27,7 @@ function displayItems(items) {
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('item-card');
     itemDiv.dataset.id = item.id; // Store item ID
-
+    
     // Set the outline color based on the rarity
     const rarityColor = rarityColors[item.rarity] || '#000000'; // Default to black if no match
 
@@ -67,4 +57,36 @@ function filterItems() {
     item.name.toLowerCase().includes(searchValue)
   );
   displayItems(filteredItems);
+}
+
+// Function to handle sorting
+function sortItems() {
+  const sortOption = document.getElementById('sort-dropdown').value;
+  let sortedItems = [...itemsData]; // Create a copy of the items array to sort
+
+  switch (sortOption) {
+    case 'price-asc':
+      sortedItems.sort((a, b) => a.estimated_value - b.estimated_value);
+      break;
+    case 'price-desc':
+      sortedItems.sort((a, b) => b.estimated_value - a.estimated_value);
+      break;
+    case 'az':
+      sortedItems.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case 'za':
+      sortedItems.sort((a, b) => b.name.localeCompare(a.name));
+      break;
+    case 'legendary-to-common':
+      const rarityOrder = ['Legendary', 'Epic', 'Rare', 'Uncommon', 'Common'];
+      sortedItems.sort((a, b) => rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity));
+      break;
+    case 'common-to-legendary':
+      sortedItems.sort((a, b) => rarityOrder.indexOf(b.rarity) - rarityOrder.indexOf(a.rarity));
+      break;
+    default:
+      break;
+  }
+
+  displayItems(sortedItems);
 }
