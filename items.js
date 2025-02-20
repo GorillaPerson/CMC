@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log("Type of items:", typeof items);
     console.log("Is items an array?", Array.isArray(items));
 
-    const item = Array.isArray(items) ? items[0] : items; // Fix for API response format
+    const item = items; // Directly use the fetched object
 
     if (!item || !item.name) {
       detailsContainer.innerHTML = "<p>Item not found.</p>";
