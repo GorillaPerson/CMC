@@ -27,23 +27,22 @@ function displayItems(items) {
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('item-card', item.rarity.toLowerCase());
     itemDiv.dataset.id = item.id; // Store item ID
-
-    // Create a button inside the item card to handle redirection
-    const itemButton = document.createElement('button');
-    itemButton.classList.add('item-button');
-    itemButton.setAttribute('aria-label', `View details for ${item.name}`);
-    itemButton.onclick = () => {
+    
+    // Make the entire item div clickable
+    itemDiv.style.cursor = 'pointer'; // Show pointer cursor on hover
+    
+    // Add click event to redirect to the item details page
+    itemDiv.onclick = () => {
       window.location.href = `https://gorillaperson.github.io/McCraftWeb/item.html?id=${item.id}`;
     };
 
-    itemButton.innerHTML = `
+    itemDiv.innerHTML = `
       <img src="${item.image_url}" alt="${item.name}" width="100" height="100" />
       <h3>${item.name}</h3>
       <p class="item-rarity">${item.rarity}</p>
       <p class="item-price">$${item.estimated_value.toLocaleString()}</p>
     `;
 
-    itemDiv.appendChild(itemButton); // Append the button to the item div
     itemsList.appendChild(itemDiv);  // Append the item div to the items list
   });
 }
