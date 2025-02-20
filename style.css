@@ -121,6 +121,6 @@ body {
 }
 
 .sort-dropdown:hover {
-  background-color: #f0f0f0;
-  border-color: #aaa;
+  background-color: #444;
+  border-color: #f39c12;
 }
