@@ -1,4 +1,4 @@
-const apiUrl = 'https://228363d1-ce75-4d23-af8b-73b1ddefc072-00-izqgoetu11vd.picard.replit.dev/items'; // Replace with your actual Replit URL
+const apiUrl = 'https://workercloudflare.cdent-989.workers.dev/items'; // Replace with your actual Replit URL
 
 let itemsData = []; // To store the fetched data
 
