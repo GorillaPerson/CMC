@@ -8,8 +8,19 @@
 </head>
 <body>
 
-  <!-- Search Bar at the Top -->
-  <div class="center-content">
+  <!-- Search and Sorting Section -->
+  <div id="search-container" style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 20px;">
+    <!-- Sorting Dropdown -->
+    <select id="sort-dropdown" onchange="sortItems()">
+      <option value="price-asc">Price: Lowest to Highest</option>
+      <option value="price-desc">Price: Highest to Lowest</option>
+      <option value="az">A - Z</option>
+      <option value="za">Z - A</option>
+      <option value="legendary-to-common">Legendary to Common</option>
+      <option value="common-to-legendary">Common to Legendary</option>
+    </select>
+
+    <!-- Search Bar -->
     <input 
       type="text" 
       id="search-bar" 
