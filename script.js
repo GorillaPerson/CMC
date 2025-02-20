@@ -1,51 +1,47 @@
-const apiUrl = 'https://workercloudflare.cdent-989.workers.dev/items'; // Replace with your actual Replit URL
+document.addEventListener("DOMContentLoaded", async function () {
+  const itemsContainer = document.getElementById("items-container");
 
-let itemsData = []; // To store the fetched data
+  try {
+    const response = await fetch("https://workercloudflare.cdent-989.workers.dev/items");
+    const items = await response.json();
+    console.log("Fetched items:", items);
 
-// Fetch items from the backend and display them
-fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    itemsData = data;
-    displayItems(data);
-  })
-  .catch(error => {
-    console.error('Error fetching items:', error);
-  });
+    itemsContainer.innerHTML = ""; // Clear previous content
 
-// Function to format number with commas
-function formatNumberWithCommas(number) {
-  return number.toLocaleString(); // Formats number with commas
-}
+    items.forEach(item => {
+      const itemElement = document.createElement("div");
+      itemElement.classList.add("item");
 
-// Function to display the items
-function displayItems(items) {
-  const itemsList = document.getElementById("items-list");
-  itemsList.innerHTML = ''; 
+      // Create the clickable link
+      itemElement.innerHTML = `
+        <a href="item.html?id=${item.id}">
+          <div class="item-box" style="border-color: ${getRarityColor(item.rarity)};">
+            <img src="${item.image_url}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>${item.rarity}</p>
+            <p>Value: $${item.estimated_value.toLocaleString()}</p>
+          </div>
+        </a>
+      `;
 
-  items.forEach(item => {
-    const itemDiv = document.createElement('div');
-    itemDiv.classList.add('item-card', item.rarity.toLowerCase());
-    itemDiv.dataset.id = item.id; // Store item ID
+      itemsContainer.appendChild(itemElement);
+    });
 
-    itemDiv.innerHTML = `
-      <img src="${item.image_url}" alt="${item.name}" width="100" height="100" />
-      <h3>${item.name}</h3>
-      <p class="item-rarity">${item.rarity}</p>
-      <p class="item-price">$${item.estimated_value.toLocaleString()}</p>
-    `;
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    itemsContainer.innerHTML = "<p>Failed to load items.</p>";
+  }
+});
 
-    itemsList.appendChild(itemDiv);
-  });
-}
-
-
-
-// Function to filter items based on search input
-function filterItems() {
-  const searchValue = document.getElementById('search-bar').value.toLowerCase();
-  const filteredItems = itemsData.filter(item =>
-    item.name.toLowerCase().includes(searchValue)
-  );
-  displayItems(filteredItems);
+// Function to return color based on rarity
+function getRarityColor(rarity) {
+  const colors = {
+    "Common": "gray",
+    "Uncommon": "lightgreen",
+    "Rare": "blue",
+    "Epic": "purple",
+    "Legendary": "gold",
+    "Special": "red"
+  };
+  return colors[rarity] || "white";
 }
