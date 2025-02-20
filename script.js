@@ -20,24 +20,25 @@ function formatNumberWithCommas(number) {
 
 // Function to display the items
 function displayItems(items) {
-  const itemsList = document.getElementById('items-list');
-  itemsList.innerHTML = ''; // Clear the list before displaying the new items
+  const itemsList = document.getElementById("items-list");
+  itemsList.innerHTML = ''; 
 
   items.forEach(item => {
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('item-card', item.rarity.toLowerCase());
+    itemDiv.dataset.id = item.id; // Store item ID
 
     itemDiv.innerHTML = `
-      <a href="item.html?id=${item.id}" class="item-link">
-        <img src="${item.image_url}" alt="${item.name}" width="100" height="100" />
-        <h3>${item.name}</h3>
-        <p class="item-rarity">${item.rarity}</p>
-        <p class="item-price">$${item.estimated_value.toLocaleString()}</p>
-      </a>
+      <img src="${item.image_url}" alt="${item.name}" width="100" height="100" />
+      <h3>${item.name}</h3>
+      <p class="item-rarity">${item.rarity}</p>
+      <p class="item-price">$${item.estimated_value.toLocaleString()}</p>
     `;
+
     itemsList.appendChild(itemDiv);
   });
 }
+
 
 
 // Function to filter items based on search input
