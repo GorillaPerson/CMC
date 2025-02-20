@@ -18,21 +18,18 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   try {
     const response = await fetch(`https://workercloudflare.cdent-989.workers.dev/items?id=${itemId}`);
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch item");
-    }
-
     const items = await response.json();
-    console.log("Fetched items:", items);
 
-    if (!Array.isArray(items) || items.length === 0) {
+    console.log("Fetched items:", items);
+    console.log("Type of items:", typeof items);
+    console.log("Is items an array?", Array.isArray(items));
+
+    const item = Array.isArray(items) ? items[0] : items; // Fix for API response format
+
+    if (!item || !item.name) {
       detailsContainer.innerHTML = "<p>Item not found.</p>";
       return;
     }
-
-    const item = Array.isArray(items) ? items[0] : items;
-
 
     detailsContainer.innerHTML = `
       <h2>${item.name}</h2>
@@ -40,7 +37,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       <p><strong>Rarity:</strong> ${item.rarity}</p>
       <p><strong>Estimated Value:</strong> $${item.estimated_value.toLocaleString()}</p>
     `;
-console.log("Extracted itemId from URL:", itemId);
 
   } catch (error) {
     console.error("Error fetching item:", error);
