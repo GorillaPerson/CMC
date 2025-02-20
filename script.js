@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const itemsContainer = document.getElementById("items-container");
+  const itemsContainer = document.getElementById("items-list");
 
   try {
     const response = await fetch("https://workercloudflare.cdent-989.workers.dev/items");
