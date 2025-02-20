@@ -2,6 +2,16 @@ const apiUrl = 'https://workercloudflare.cdent-989.workers.dev/items'; // Replac
 
 let itemsData = []; // To store the fetched data
 
+// Define rarity colors for both text and outline
+const rarityColors = {
+  'Common': '#808080', // Gray
+  'Uncommon': '#32CD32', // Light Green
+  'Rare': '#0000FF', // Blue
+  'Epic': '#800080', // Purple
+  'Legendary': '#FFD700', // Yellow
+  'Special': '#FF0000', // Red
+};
+
 // Fetch items from the backend and display them
 fetch(apiUrl)
   .then(response => response.json())
