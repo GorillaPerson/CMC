@@ -7,19 +7,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Search and Sorting Section -->
-  <div id="search-container" class="center-content">
-    <!-- Sorting Dropdown -->
-    <select id="sort-dropdown" onchange="sortItems()" class="sort-dropdown">
-      <option value="price-asc">Price: Lowest to Highest</option>
-      <option value="price-desc">Price: Highest to Lowest</option>
-      <option value="az">A - Z</option>
-      <option value="za">Z - A</option>
-      <option value="legendary-to-common">Legendary to Common</option>
-      <option value="common-to-legendary">Common to Legendary</option>
-    </select>
-
     <!-- Search Bar -->
     <input 
       type="text" 
@@ -28,6 +15,15 @@
       placeholder="Search for an item..." 
       oninput="filterItems()"
     />
+        <!-- Sorting Dropdown -->
+    <select id="sort-dropdown" onchange="sortItems()" class="sort-dropdown">
+      <option value="price-asc">Price: Lowest to Highest</option>
+      <option value="price-desc">Price: Highest to Lowest</option>
+      <option value="az">A - Z</option>
+      <option value="za">Z - A</option>
+      <option value="legendary-to-common">Legendary to Common</option>
+      <option value="common-to-legendary">Common to Legendary</option>
+    </select>
   </div>
 
   <!-- Items List Section -->
