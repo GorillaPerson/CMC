@@ -1,38 +1,47 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const itemContainer = document.getElementById("item-list");
+  const detailsContainer = document.getElementById("item-details");
+
+  if (!detailsContainer) {
+    console.error("Error: Element with id 'item-details' not found in the HTML.");
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const itemId = params.get("id");
+
+  console.log("Extracted itemId:", itemId);
+
+  if (!itemId) {
+    detailsContainer.innerHTML = "<p>Item not found.</p>";
+    return;
+  }
 
   try {
-    const response = await fetch("https://workercloudflare.cdent-989.workers.dev/items");
-    const items = await response.json();
+    const response = await fetch(`https://workercloudflare.cdent-989.workers.dev/items?id=${itemId}`);
 
-    console.log("Fetched items:", items); // Debugging log
+    if (!response.ok) {
+      throw new Error("Failed to fetch item");
+    }
+
+    const items = await response.json();
+    console.log("Fetched items:", items);
 
     if (!Array.isArray(items) || items.length === 0) {
-      console.error("No valid items returned from API");
-      itemContainer.innerHTML = "<p>No items available.</p>";
+      detailsContainer.innerHTML = "<p>Item not found.</p>";
       return;
     }
 
-    itemContainer.innerHTML = ""; // Clear any placeholder text
+    const item = items[0];
 
-    items.forEach(item => {
-      const itemElement = document.createElement("div");
-      itemElement.classList.add("item");
-
-      // Ensure each item is clickable and links to the details page
-      itemElement.innerHTML = `
-        <a href="item.html?id=${item.id}">
-          <img src="${item.image_url}" alt="${item.name}" width="100">
-          <h3>${item.name}</h3>
-          <p>Estimated Value: $${item.estimated_value.toLocaleString()}</p>
-        </a>
-      `;
-
-      itemContainer.appendChild(itemElement);
-    });
+    detailsContainer.innerHTML = `
+      <h2>${item.name}</h2>
+      <img src="${item.image_url}" alt="${item.name}" width="200">
+      <p><strong>Rarity:</strong> ${item.rarity}</p>
+      <p><strong>Estimated Value:</strong> $${item.estimated_value.toLocaleString()}</p>
+    `;
 
   } catch (error) {
-    console.error("Error fetching items:", error);
-    itemContainer.innerHTML = "<p>Error loading items.</p>";
+    console.error("Error fetching item:", error);
+    detailsContainer.innerHTML = "<p>Error loading item details.</p>";
   }
 });
