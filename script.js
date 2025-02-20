@@ -46,7 +46,7 @@ function displayItems(items) {
 
     // Add click event to redirect to the item details page
     itemDiv.onclick = () => {
-      window.location.href = `https://gorillaperson.github.io/McCraftWeb/item.html?id=${item.id}`;
+      window.location.href = `https://gorillaperson.github.io/CMC/item.html?id=${item.id}`;
     };
 
     itemDiv.innerHTML = `
