@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       return;
     }
 
-    const item = items[0];
+    const item = Array.isArray(items) ? items[0] : items;
+
 
     detailsContainer.innerHTML = `
       <h2>${item.name}</h2>
