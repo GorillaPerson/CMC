@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <p><strong>Rarity:</strong> ${item.rarity}</p>
       <p><strong>Estimated Value:</strong> $${item.estimated_value.toLocaleString()}</p>
     `;
+console.log("Extracted itemId from URL:", itemId);
 
   } catch (error) {
     console.error("Error fetching item:", error);
