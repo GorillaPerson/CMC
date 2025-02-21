@@ -111,6 +111,7 @@ body {
   justify-content: center;
 }
 .sort-dropdown {
+  color: #7b7b7b;
   padding: 8px 12px;
   font-size: 16px;
   border:  2px solid #444;
